@@ -1,0 +1,12 @@
+[
+    {"project_id": "10000001", "name": "Early Bird Sensor", "min_pledge": 500, "quantity": 50},
+    {"project_id": "10000001", "name": "Full Sensor Kit", "min_pledge": 1200, "quantity": 100},
+    {"project_id": "20000002", "name": "Core Game", "min_pledge": 1500, "quantity": 200},
+    {"project_id": "20000002", "name": "Deluxe Edition", "min_pledge": 2500, "quantity": 50},
+    {"project_id": "30000003", "name": "Starter Pack (3 Pods)", "min_pledge": 300, "quantity": null},
+    {"project_id": "30000003", "name": "Family Pack (10 Pods)", "min_pledge": 800, "quantity": 100},
+    {"project_id": "50000005", "name": "Beta Access", "min_pledge": 250, "quantity": null},
+    {"project_id": "50000005", "name": "Lifetime Access", "min_pledge": 1000, "quantity": 200},
+    {"project_id": "80000008", "name": "Digital Copy + Name in Credits", "min_pledge": 400, "quantity": null},
+    {"project_id": "80000008", "name": "Associate Producer Credit", "min_pledge": 5000, "quantity": 10}
+]

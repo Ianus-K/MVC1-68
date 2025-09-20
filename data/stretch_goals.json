@@ -1,0 +1,11 @@
+[
+    {"project_id": "10000001", "unlock_amount": 60000, "description": "Add a waterproof casing."},
+    {"project_id": "10000001", "unlock_amount": 75000, "description": "Develop a mobile app for iOS and Android."},
+    {"project_id": "10000001", "unlock_amount": 100000, "description": "Integrate with Alexa and Google Home."},
+    {"project_id": "20000002", "unlock_amount": 90000, "description": "Upgraded miniature figures."},
+    {"project_id": "20000002", "unlock_amount": 110000, "description": "New expansion pack: 'The Shadow Isles'."},
+    {"project_id": "50000005", "unlock_amount": 120000, "description": "Interactive coding challenges."},
+    {"project_id": "50000005", "unlock_amount": 150000, "description": "Advanced Data Science course module."},
+    {"project_id": "80000008", "unlock_amount": 75000, "description": "Extended soundtrack by a renowned composer."},
+    {"project_id": "80000008", "unlock_amount": 100000, "description": "A 5-minute 'Making Of' documentary."}
+]
