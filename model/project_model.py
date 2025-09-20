@@ -37,15 +37,15 @@ class Project(ABC):
 
     def add_pledge(self, pledge: Pledge, reward_tier: RewardTier | None) -> Tuple[bool, str]:
         """Validates and adds a new pledge. Returns (success, message)."""
-        # Rule 1: Deadline must be in the future
+        # Deadline must be in the future
         if datetime.now() > self.data.deadline:
             return False, "Project deadline has passed."
         
-        # Rule 2: Pledge amount must be >= reward tier minimum
+        # Pledge amount must be >= reward tier minimum
         if reward_tier and pledge.amount < reward_tier.min_pledge:
             return False, f"Pledge amount must be at least {reward_tier.min_pledge} for '{reward_tier.name}'."
         
-        # Rule 3: Check reward quantity
+        # Check reward quantity
         if reward_tier and reward_tier.quantity is not None:
             if reward_tier.quantity <= 0:
                 return False, f"Reward '{reward_tier.name}' is out of stock."
