@@ -1,4 +1,3 @@
-import os
 import sys
 from datetime import datetime
 from model.data_manager import DataManager
@@ -8,17 +7,14 @@ from view.console_view import ConsoleView
 from utils.helpers import clear_screen
 
 class AppController:
-    """Main controller for the application."""
-    def __init__(self, project_root: str):
+    def __init__(self):
         self.view = ConsoleView()
-        data_folder_path = os.path.join(project_root, 'data')
-        self.data_manager = DataManager(data_folder=data_folder_path)
+        self.data_manager = DataManager(data_folder='data')
         self.projects: list[Project] = self._initialize_project_models()
         self.current_user: User | None = None
         self.rejected_pledges_count = 0
 
     def _initialize_project_models(self) -> list[Project]:
-        """Factory method to create appropriate project model instances."""
         project_models = []
         for proj_data in self.data_manager.projects_data:
             pledges = self.data_manager.get_pledges_for_project(proj_data.project_id)
@@ -29,7 +25,7 @@ class AppController:
         return project_models
 
     def run(self):
-        """Main application loop."""
+        # Main loop
         while not self.current_user:
             self.handle_login()
 
@@ -62,6 +58,8 @@ class AppController:
         self.current_user = None
 
     def list_all_projects(self):
+
+        # Sort projects by deadline
         sorted_projects = sorted(self.projects, key=lambda p: p.deadline)
         
         while True:
@@ -86,6 +84,8 @@ class AppController:
                 break
             elif choice.lower() == 'p':
                 self.handle_pledge(project)
+
+                # หลังบริจาคให้อยู่ดูข้อมูล update
             else:
                 self.view.show_message("Invalid choice.", error=True)
 
@@ -121,7 +121,7 @@ class AppController:
             timestamp=datetime.now(),
             reward_tier_name=selected_reward.name if selected_reward else None
         )
-        
+
         success, message = project.add_pledge(pledge, selected_reward)
 
         if success:

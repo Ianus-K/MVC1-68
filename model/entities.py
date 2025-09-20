@@ -28,7 +28,7 @@ class Pledge:
     timestamp: datetime
     reward_tier_name: Optional[str] = None
 
-# เก็บ raw, static data ของ project จาก JSON file.
+# data ของ project จาก JSON file.
 @dataclass
 class ProjectData:
     project_id: str

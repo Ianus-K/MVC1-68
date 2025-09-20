@@ -5,7 +5,6 @@ from typing import List, Any
 from model.entities import User, ProjectData, RewardTier, StretchGoal, Pledge
 
 class DataManager:
-    """Handles loading and saving of all data from/to JSON files."""
     def __init__(self, data_folder: str):
         self.data_folder = data_folder
         self.users: List[User] = self._load_data('users.json', User)
@@ -17,10 +16,7 @@ class DataManager:
         return os.path.join(self.data_folder, filename)
 
     def _load_data(self, filename: str, cls) -> List[Any]:
-        """
-        Loads data from a JSON file, instantiates the given class,
-        and then robustly corrects the types for datetime fields.
-        """
+        """ Loads data from a JSON file, instantiates the given class, and then robustly corrects the types for datetime fields """
         path = self._get_path(filename)
         try:
             with open(path, 'r', encoding='utf-8') as f:
@@ -44,7 +40,7 @@ class DataManager:
             return []
 
     def _link_related_data(self):
-        """Links reward tiers and stretch goals to their respective projects."""
+        # Links reward tiers and stretch goals
         reward_tiers = self._load_data('reward_tiers.json', RewardTier)
         stretch_goals = self._load_data('stretch_goals.json', StretchGoal)
 

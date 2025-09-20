@@ -5,7 +5,6 @@ from typing import List, Tuple
 from model.entities import ProjectData, Pledge, RewardTier, StretchGoal
 
 class Project(ABC):
-    """Abstract Base Class for all project types."""
     def __init__(self, data: ProjectData, pledges: List[Pledge]):
         self.data = data
         self._pledges = pledges
@@ -36,8 +35,6 @@ class Project(ABC):
         return self.current_funding >= self.goal
 
     def add_pledge(self, pledge: Pledge, reward_tier: RewardTier | None) -> Tuple[bool, str]:
-        """Validates and adds a new pledge. Returns (success, message)."""
-        # Deadline must be in the future
         if datetime.now() > self.data.deadline:
             return False, "Project deadline has passed."
         
@@ -45,7 +42,6 @@ class Project(ABC):
         if reward_tier and pledge.amount < reward_tier.min_pledge:
             return False, f"Pledge amount must be at least {reward_tier.min_pledge} for '{reward_tier.name}'."
         
-        # Check reward quantity
         if reward_tier and reward_tier.quantity is not None:
             if reward_tier.quantity <= 0:
                 return False, f"Reward '{reward_tier.name}' is out of stock."
@@ -62,14 +58,12 @@ class Project(ABC):
 
 
 class SimpleProject(Project):
-    """Model for a project without stretch goals."""
     def get_status_details(self) -> str:
         status = "Funded!" if self.is_funded() else "Funding in progress."
         return f"Status: {status}\n"
 
 
 class StretchGoalProject(SimpleProject):
-    """Model for a project with stretch goals."""
     def get_unlocked_stretch_goals(self) -> List[StretchGoal]:
         unlocked = [
             sg for sg in sorted(self.data.stretch_goals, key=lambda x: x.unlock_amount) 

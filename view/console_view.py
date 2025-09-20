@@ -4,8 +4,6 @@ from model.project_model import Project
 from utils.helpers import create_progress_bar, clear_screen
 
 class ConsoleView:
-    """Handles all console input and output."""
-
     def display_main_menu(self, username: str):
         print("\n==================================")
         print(f"  Crowdfunding Main Menu")
@@ -69,11 +67,10 @@ class ConsoleView:
     def get_pledge_info(self, project: Project) -> tuple[str, str]:
         reward_choice = "" # ค่าเริ่มต้น ยังไม่เลือกรางวัล
 
-        # ตรวจสอบว่าโปรเจกต์มี Reward Tiers ไหม
+        # เช็คว่าโปรเจกต์มี Reward Tiers ไหม
         if project.data.reward_tiers:
             reward_choice = input(f"Enter reward tier number to select (1-{len(project.data.reward_tiers)}), or press Enter to skip: ").strip()
-
-        # ถามจำนวนเงิน
+        
         amount_str = input("Enter amount to pledge: ").strip()
         return reward_choice, amount_str
 
